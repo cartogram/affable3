@@ -1,0 +1,4 @@
+type Affirmation {
+  id: ID!
+  description: String!
+  }
