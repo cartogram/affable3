@@ -26,9 +26,6 @@ class Feed extends React.Component {
 
     return (
       <View>
-        <View>
-          <Text>Feed</Text>
-        </View>
         <ScrollView>
           <View>
             {affirmationList}
@@ -42,5 +39,3 @@ class Feed extends React.Component {
 export default compose(
   graphql(FEED_QUERY, { name: 'FeedQuery' })
 )(Feed)
-
-
