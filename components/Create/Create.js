@@ -1,7 +1,11 @@
 import React from 'react'
 import styled from 'styled-components/native'
 import theme from '../../styles'
+import { compose, graphql } from 'react-apollo'
 import { Container, Content, InputGroup, Button, Text, Input, Icon } from 'native-base';
+
+import { CREATE_AFFIRMATION_MUTATION } from './gql'
+import { FEED_QUERY } from '../Feed/gql'
 
 
 const StyledTitle = styled.Text`
@@ -18,6 +22,8 @@ const StyledCreate = styled.View`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-top: 32px;
+  background: white;
 `
 
 const StyledButtonBar = styled.View`
@@ -38,7 +44,6 @@ const StyledButton = styled.Button`
   display: flex;
   height: 80px;
 `
-
 class Create extends React.Component {
    state = {
     text: '',
@@ -46,10 +51,17 @@ class Create extends React.Component {
   }
   createAffirmation = async () => {
      const {text, author} = this.state
-     await this.props.createPostMutation({
+     await this.props.createAffirmationMutation({
        variables: {text, author}
      })
-     this.props.onComplete()
+    this.setState((prevState, props) => ({
+      text: '',
+      author: ''
+    }))
+
+     if(typeof this.props.onComplete === 'function') {
+       this.props.onComplete()
+     }
    }
   render () {
     return (
@@ -57,7 +69,7 @@ class Create extends React.Component {
         <StyledTitle>Create</StyledTitle>
         <InputGroup>
           <Input
-            placeholder='Type a text...'
+            placeholder='Type the text...'
             onChangeText={(text) => this.setState({text})}
             value={this.state.text}
             multiline = {true}
@@ -66,7 +78,7 @@ class Create extends React.Component {
         </InputGroup>
         <InputGroup>
           <Input
-            placeholder='Type a text...'
+            placeholder='Add an author.'
             onChangeText={(author) => this.setState({author})}
             value={this.state.author}
           />
@@ -86,4 +98,13 @@ class Create extends React.Component {
   }
 }
 
-export default Create
+export default compose(
+  graphql(CREATE_AFFIRMATION_MUTATION, {
+    name: 'createAffirmationMutation',
+    options: {
+    refetchQueries: [
+      'allAffirmations',
+    ],
+  },
+  })
+)(Create)

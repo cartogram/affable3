@@ -1,11 +1,12 @@
 import { gql } from 'react-apollo'
 
-const addMutation = gql`
-  mutation addPost($description: String!, $imageUrl: String!) {
-    createPost(description: $description, imageUrl: $imageUrl) {
+const CREATE_AFFIRMATION_MUTATION = gql`
+  mutation createAffirmation($text: String!, $author: String!) {
+    createAffirmation(text: $text, author: $author) {
       id
-      description
-      imageUrl
+      text
+      author
     }
   }
 `
+export { CREATE_AFFIRMATION_MUTATION }
