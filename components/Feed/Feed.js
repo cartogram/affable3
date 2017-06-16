@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-native'
 import { compose, graphql } from 'react-apollo'
 import { Container, Content, Card, CardItem, Text } from 'native-base';
 
+
 import { FEED_QUERY } from './gql'
 import Affirmation from '../Affirmation'
 
@@ -18,7 +19,7 @@ class Feed extends React.Component {
       return (<Text>Loading</Text>)
     }
 
-    const affirmationList = FeedQuery.allAffirmations.map(a => (
+    const affirmationList = FeedQuery.allAffirmations && FeedQuery.allAffirmations.map(a => (
       <Affirmation
         key={a.id}
         affirmation={a}

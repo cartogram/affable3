@@ -22,8 +22,11 @@ const StyledCreate = styled.View`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-top: 32px;
+  padding-top: 24px;
   background: white;
+  border-top-width: 1px;
+  border-top-color: #eee;
+
 `
 
 const StyledButtonBar = styled.View`
@@ -66,7 +69,7 @@ class Create extends React.Component {
   render () {
     return (
       <StyledCreate>
-        <StyledTitle>Create</StyledTitle>
+        <StyledTitle>Create a new affirmation</StyledTitle>
         <InputGroup>
           <Input
             placeholder='Type the text...'
@@ -86,7 +89,6 @@ class Create extends React.Component {
         <StyledButtonBar>
         <Button
           onPress={this.createAffirmation}
-          title="Learn More"
           bordered
           small
         >
