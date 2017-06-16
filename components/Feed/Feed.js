@@ -1,7 +1,8 @@
 import React from 'react'
-import { ScrollView, View, Text, Button } from 'react-native'
+import { ScrollView, View, Button } from 'react-native'
 import { withRouter } from 'react-router-native'
 import { compose, graphql } from 'react-apollo'
+import { Container, Content, Card, CardItem, Text } from 'native-base';
 
 import { FEED_QUERY } from './gql'
 import Affirmation from '../Affirmation'

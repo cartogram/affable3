@@ -1,5 +1,14 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { Card, CardItem, Text  } from 'native-base';
+import styled from 'styled-components/native'
+
+// const Text = styled.Text`
+//   display: block;
+// `
+
+// const TextBlock = styled.View`
+//   display: block;
+// `
 
 import { AFFIRMATION_FRAGMENT } from './gql'
 
@@ -9,10 +18,12 @@ const Affirmation = ({
     author
   }
 }) => (
-  <View>
-    <Text>{author}</Text>
-    <Text>{text}</Text>
-  </View>
+  <Card>
+    <CardItem >
+      <Text note>{author}: </Text>
+      <Text>{text}</Text>
+    </CardItem>
+  </Card>
 )
 
 Affirmation.fragments = {

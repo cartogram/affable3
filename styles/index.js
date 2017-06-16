@@ -4,11 +4,17 @@ const theme = {
     lighter: "#E0F5F5",
     light: "#B7ECEC",
     dark: "#00848E",
-    darker: "#003135"
+    darker: "#003135",
+    native: '#5067FF'
   },
-  sizes: {
-    base: 12
-  }
+  scale: [
+    0,
+    4,
+    8,
+    16,
+    24,
+    32,
+  ]
 }
 
 export default theme
